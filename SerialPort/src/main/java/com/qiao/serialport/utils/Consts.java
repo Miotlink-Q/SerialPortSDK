@@ -1,6 +1,6 @@
 package com.qiao.serialport.utils;
 
-import com.tencent.mmkv.MMKV;
+
 
 public interface Consts {
 
