@@ -42,7 +42,7 @@ publish{
     //项目描述    
     desc='串口工具'
     //项目网址    
-    website='https://github.com/Miotlink-Q/SerialPort'
+    website='https://github.com/Miotlink-Q/SerialPortSDK'
 }
 
 dependencies {
