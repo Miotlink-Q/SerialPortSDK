@@ -17,7 +17,7 @@ import com.qiao.serialport.service.SerialPortReceiverMessage;
 import com.qiao.serialport.service.SerialPortSendMessage;
 import com.qiao.serialport.utils.ByteUtil;
 import com.qiao.serialport.utils.Consts;
-import com.tencent.mmkv.MMKV;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -56,7 +56,6 @@ public class SerialPortOpenSDK {
 
     public void initialize(Context mContex)throws Exception{
         this.mContext=mContex;
-        MMKV.initialize(mContext);
         Consts.Utils.packageName=mContext.getPackageName();
         Intent intent=new Intent();
         intent.setAction(mContext.getPackageName()+Consts.Utils.ACTION);
@@ -135,8 +134,13 @@ public class SerialPortOpenSDK {
         this.parity=parity;
         this.flowCon=flowCon;
         this.flags=flags;
-
-
+        Consts.Utils.path=path;
+        Consts.Utils.baudrate=baudrate;
+        Consts.Utils.stopBits=stopBits;
+        Consts.Utils.dataBits=dataBits;
+        Consts.Utils.parity=parity;
+        Consts.Utils.flowCon=flowCon;
+        Consts.Utils.flags=flags;
 
     }
 
@@ -256,28 +260,15 @@ public class SerialPortOpenSDK {
                     listener.initListener(0x01, "初始化成功");
                 }
 
-                MMKV.mmkvWithID("serialport", MMKV.MULTI_PROCESS_MODE).putString(Consts.Utils.PATH, path);
-                MMKV.mmkvWithID("serialport", MMKV.MULTI_PROCESS_MODE).putInt(Consts.Utils.BAUDRATE, baudrate);
-                MMKV.mmkvWithID("serialport", MMKV.MULTI_PROCESS_MODE).putInt(Consts.Utils.STOPBITS, stopBits);
-                MMKV.mmkvWithID("serialport", MMKV.MULTI_PROCESS_MODE).putInt(Consts.Utils.DATABITS, dataBits);
-                MMKV.mmkvWithID("serialport", MMKV.MULTI_PROCESS_MODE).putInt(Consts.Utils.FLOWCON, flowCon);
-                MMKV.mmkvWithID("serialport", MMKV.MULTI_PROCESS_MODE).putInt(Consts.Utils.FLAGS, flags);
-                MMKV.defaultMMKV().putString(Consts.Utils.PATH, path);
-                MMKV.defaultMMKV().putInt(Consts.Utils.BAUDRATE, baudrate);
-                MMKV.defaultMMKV().putInt(Consts.Utils.STOPBITS, stopBits);
-                MMKV.defaultMMKV().putInt(Consts.Utils.DATABITS, dataBits);
-                MMKV.defaultMMKV().putInt(Consts.Utils.FLOWCON, flowCon);
-                MMKV.defaultMMKV().putInt(Consts.Utils.FLAGS, flags);
                 if (serialPortSendMessage!=null){
                     try {
-                        serialPortSendMessage.setSerilaPort(
-                                MMKV.defaultMMKV().getString(Consts.Utils.PATH, "dev/ttyS3"),
-                                MMKV.defaultMMKV().getInt(Consts.Utils.BAUDRATE,19200),
-                                MMKV.defaultMMKV().getInt(Consts.Utils.STOPBITS,1),
-                                MMKV.defaultMMKV().getInt(Consts.Utils.DATABITS,8),
-                                MMKV.defaultMMKV().getInt(Consts.Utils.PARITY,0),
-                                MMKV.defaultMMKV().getInt(Consts.Utils.FLOWCON,0),
-                                MMKV.defaultMMKV().getInt(Consts.Utils.FLAGS,0));
+                        serialPortSendMessage.setSerilaPort(Consts.Utils.path,
+                                Consts.Utils.baudrate,
+                                Consts.Utils.stopBits,
+                                Consts.Utils.dataBits,
+                                Consts.Utils.parity,
+                                Consts.Utils.flowCon,
+                                Consts.Utils.flags);
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }

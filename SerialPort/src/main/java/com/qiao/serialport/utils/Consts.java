@@ -1,5 +1,7 @@
 package com.qiao.serialport.utils;
 
+import com.tencent.mmkv.MMKV;
+
 public interface Consts {
 
     public static class  Utils{
@@ -13,5 +15,12 @@ public interface Consts {
         public static String PARITY="SerialPort_PARITY";
         public static String FLOWCON="SerialPort_FLOWCON";
         public static String FLAGS="SerialPort_FLAGS";
+        public static String path="dev/ttyS3";
+        public static int baudrate=19200;
+        public static int stopBits=1;
+        public static int dataBits=8;
+        public static int parity=0;
+        public static int flowCon=0;
+        public static int flags=0;
     }
 }
