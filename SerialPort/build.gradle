@@ -36,11 +36,11 @@ publish{
     //一般写包名   
     groupId='com.mlink.serialport'
     //指定仓库名称//   
-    repoName="mlink"
+//    repoName="mlink"
     //项目名称    
     artifactId='SerialPortSDK'
     //版本号   
-    publishVersion='1.0.2'
+    publishVersion = '1.1.2'
     //项目描述    
     desc='串口工具'
     //项目网址    
