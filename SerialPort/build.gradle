@@ -30,7 +30,7 @@ android {
 
 publish{
     //bintray.com的用户名  
-    userOrg='Miotlink-Q'
+    userOrg='miotlink-q'
     //一般写包名   
     groupId='com.mlink.serialport'
     //指定仓库名称//   
